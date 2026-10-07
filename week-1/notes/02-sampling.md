@@ -1,5 +1,13 @@
 # Sampling
 
+## Watch
+
+- [Deep Dive into LLMs like ChatGPT, inference](https://www.youtube.com/watch?v=7xTGNNLPyMI&t=1561s) — from 26:01. One token is sampled, appended, and the model runs again.
+
+## Which call this repo makes
+
+The picker settings are fields on `GenerateContentConfig`, passed by `cli/llm.py`: `temperature`, `top_p`, `top_k`, `seed`. Top-candidate log probabilities are requested with `response_logprobs=True` and `logprobs=5`. This is `models.generate_content`, not the Interactions API.
+
 ## Where the model's answer comes from
 
 The model does not write sentences. It does one thing repeatedly: **look at the text so far, and rate every possible next token.**
@@ -168,6 +176,20 @@ A seed moves you from "different every time" to "usually the same." Not the same
 
 ---
 
+## What `gemini-3.5-flash-lite` actually did
+
+Measured 7 Oct 2026, in `experiments/02-sampling.ipynb`. The mechanism above is how sampling works. This model does not apply it.
+
+**Logprobs are refused.** `response_logprobs=True, logprobs=5` returns `400 Logprobs is not enabled for this model`. There is no top-5 list to print. Google does not return logprobs for Gemini 3.x. The temperature formula in the notebook is checked against the notes' 70/20/10 example, because the API will not hand back a distribution to check it against.
+
+**Temperature does not change the draw.** Prompt: "Reply with one random integer from 0 to 99999. Digits only." Seed 7 produced `48216` at temperature 0, at temperature 1 (twice), and at temperature 2 (twice). Seed 99 produced `48291`. The seed fixes the pick. Temperature does not resize the bins — if it did, the same seed at temperature 2 would land on a different token. Unseeded temperature 0 was also not greedy: four draws were four-ish different integers, not one repeated winner.
+
+**`top_p` did not change the draw either.** Same seed, `top_p=1.0` and `top_p=0.5`, both `48216`. Cutoff and flattening are different operations on paper (the notebook shows that on 70/20/10). On this model both knobs are accepted and ignored. Google's Gemini 3.x guide says to remove `temperature`, `top_p`, and `top_k` from requests. `complete()` still sends them so this is visible: a 200 does not mean the setting was used. `config.TEMPERATURE` is 0.7, and that default is filled in whenever the caller passes `None`.
+
+**The "42" case.** `6*7` came back `42` at temperature 0 and at temperature 2. The formula says a 99% token is still about 91% after temperature 2, so it would survive a real rescaling. Here it survives because temperature is not applied. The formula and the bug agree on the outcome and disagree on the cause. The seed experiment is the one that separates them.
+
+---
+
 ## What this means for building
 
 Build as if output is non-deterministic, always, at every setting.
@@ -189,3 +211,4 @@ If a design needs an exact repeatable answer, the fix isn't a parameter — it's
 - Top-p discards the long tail of garbage, with a cutoff that adapts to the model's confidence at that position.
 - Tune temperature, leave top-p alone.
 - Nothing is reproducible, even at temperature 0, because of floating-point ordering, shared-GPU batching, and silent backend changes.
+- On `gemini-3.5-flash-lite` specifically, `temperature` and `top_p` are accepted and ignored. A seed fixes the draw. Logprobs are refused with a 400. See the measured section above.

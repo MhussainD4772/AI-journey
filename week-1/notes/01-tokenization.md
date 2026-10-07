@@ -1,5 +1,15 @@
 # Tokenization
 
+## Watch
+
+- [Let's build the GPT Tokenizer](https://www.youtube.com/watch?v=zduSFxRajkE) — Karpathy, the merge rules in full.
+- [Deep Dive into LLMs like ChatGPT, tokenization](https://www.youtube.com/watch?v=7xTGNNLPyMI&t=467s) — from 7:47.
+- [Same video, spelling and counting](https://www.youtube.com/watch?v=7xTGNNLPyMI&t=7271s) — from 2:01:11.
+
+## Which call this repo makes
+
+`cli/llm.py` calls `models.generate_content`. It does not call the Interactions API (`client.interactions`, server-side history, `output_text`, `.steps`). Token counts come back on `response.usage_metadata`: `prompt_token_count`, `candidates_token_count`, `thoughts_token_count`. The system prompt is a `system_instruction` argument, not a role in the contents list. Contents roles are `"user"` and `"model"`.
+
 ## What the tokenizer is
 
 A separate, non-neural piece of software that sits in front of the model. It converts a string into a list of integers, and converts the model's output integers back into a string.
@@ -91,7 +101,7 @@ The vocabulary contains IDs that do not correspond to text: end-of-turn, start-o
 Consequences:
 
 - A chat request always costs slightly more tokens than the visible text.
-- System and user messages are **structurally distinct**, not just concatenated strings. That structure is what a system prompt's extra weight actually rests on.
+- On `generate_content`, the system instruction and the user/model turns are **structurally distinct**, not just concatenated strings. That structure is what a system prompt's extra weight actually rests on. The Interactions API is a different endpoint and is not what this repo calls.
 
 ## Tokenizers are family-specific
 

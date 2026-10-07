@@ -1,5 +1,13 @@
 # Context Windows and Stop Sequences
 
+## Watch
+
+- [Deep Dive into LLMs like ChatGPT, what the network reads](https://www.youtube.com/watch?v=7xTGNNLPyMI&t=867s) — from 14:27. The model conditions on the whole input you send, and nothing else.
+
+## Which call this repo makes
+
+History is a list of `types.Content(role=..., parts=[types.Part(text=...)])` with roles `"user"` and `"model"`, resent on every `generate_content` call. `cli/chat.py` appends both turns after each response. Stop strings are `stop_sequences`. Why generation ended is `candidates[0].finish_reason`. This is not the Interactions API: that API stores the conversation server-side and does not take this list.
+
 Two separate things, both about limits.
 
 ---
@@ -24,6 +32,8 @@ turn 2:  send 250 tokens   (turn 1 + reply + new message)
 turn 3:  send 500 tokens
 turn 10: send ~5000 tokens
 ```
+
+Measured with ten short turns through `cli/chat.py`'s history (`experiments/03-context-and-stopping.ipynb`): input tokens were 13, 28, 43, 58, 73, 88, 103, 118, 133, 148. Plus 15 each turn. The per-turn cost is the growing sum, so the session total grows with the square of the number of turns.
 
 **2. Overflow is a hard error, not a graceful trim.**
 
@@ -68,13 +78,16 @@ Setting `"\nQ:"` as a stop sequence cuts it off the instant it starts.
 
 ## Always check why it stopped
 
-The response includes a field — `finish_reason` or `stop_reason` depending on the provider — with values like:
+The response field on `generate_content` is `candidates[0].finish_reason`.
 
 | Value | Meaning |
 |---|---|
-| `stop` / `end_turn` | Natural end, the model finished |
-| `length` / `max_tokens` | Hit your cap, **output is truncated** |
-| stop-sequence indication | One of your stop strings fired |
+| `STOP` | Natural end, **or** one of your stop sequences fired. Same value for both. |
+| `MAX_TOKENS` | Hit `max_output_tokens`. Output is truncated. |
+
+Measured in `experiments/03-context-and-stopping.ipynb`: a one-word answer, a list stopped at `3.`, and a `max_tokens=5` cut. The first two both came back `STOP`. The stop string `3.` was absent and the list ended at item 2, which is how you tell a stop sequence from a natural end — the enum does not tell you. `max_tokens=5` on "explain photosynthesis" returned `Photos` and `MAX_TOKENS`. That is the guillotine: one token of the word, then the cut.
+
+Other providers split these into three strings (`stop` / `end_turn`, `length` / `max_tokens`, and a distinct stop-sequence reason). This endpoint does not.
 
 **Check this field.** A response truncated by `max_tokens` looks like a complete response in your string variable — it just has a sentence that trails off. If you are parsing it, you will get confusing failures unless you check why it ended.
 
@@ -91,4 +104,4 @@ Never trust the text without checking the stop reason.
 - Information in the middle of a long prompt is used less reliably than at the edges.
 - `max_tokens` truncates mid-word — it is a cost cap, not a length instruction.
 - Stop sequences halt generation immediately and are excluded from the output.
-- Always check the stop reason before using the text.
+- Always check the stop reason before using the text. On this endpoint `STOP` covers both a natural end and a stop sequence.
