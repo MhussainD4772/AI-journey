@@ -1,0 +1,175 @@
+[
+  {
+    "id": "2512.17194v1",
+    "title": "MMRAG-RFT: Two-stage Reinforcement Fine-tuning for Explainable Multi-modal Retrieval-augmented Generation",
+    "authors": [
+      "Shengwei Zhao",
+      "Jingwen Yao",
+      "Sitong Wei",
+      "Linhai Xu",
+      "Yuying Liu",
+      "Dong Zhang",
+      "Zhiqiang Tian",
+      "Shaoyi Du"
+    ],
+    "published": "2025-12-19T03:19:54+00:00",
+    "categories": [
+      "cs.AI"
+    ],
+    "abstract": "Multi-modal Retrieval-Augmented Generation (MMRAG) enables highly credible generation by integrating external multi-modal knowledge, thus demonstrating impressive performance in complex multi-modal scenarios. However, existing MMRAG methods fail to clarify the reasoning logic behind retrieval and response generation, which limits the explainability of the results. To address this gap, we propose to introduce reinforcement learning into multi-modal retrieval-augmented generation, enhancing the reasoning capabilities of multi-modal large language models through a two-stage reinforcement fine-tuning framework to achieve explainable multi-modal retrieval-augmented generation. Specifically, in the first stage, rule-based reinforcement fine-tuning is employed to perform coarse-grained point-wise ranking of multi-modal documents, effectively filtering out those that are significantly irrelevant. In the second stage, reasoning-based reinforcement fine-tuning is utilized to jointly optimize fine-grained list-wise ranking and answer generation, guiding multi-modal large language models to output explainable reasoning logic in the MMRAG process. Our method achieves state-of-the-art results on WebQA and MultimodalQA, two benchmark datasets for multi-modal retrieval-augmented generation, and its effectiveness is validated through comprehensive ablation experiments.",
+    "pdf_url": "https://arxiv.org/pdf/2512.17194v1"
+  },
+  {
+    "id": "2406.03790v2",
+    "title": "End-to-End Trainable Retrieval-Augmented Generation for Relation Extraction",
+    "authors": [
+      "Kohei Makino",
+      "Makoto Miwa",
+      "Yutaka Sasaki"
+    ],
+    "published": "2024-06-06T07:01:50+00:00",
+    "categories": [
+      "cs.CL"
+    ],
+    "abstract": "This paper addresses a crucial challenge in retrieval-augmented generation-based relation extractors; the end-to-end training is not applicable to conventional retrieval-augmented generation due to the non-differentiable nature of instance retrieval. This problem prevents the instance retrievers from being optimized for the relation extraction task, and conventionally it must be trained with an objective different from that for relation extraction. To address this issue, we propose a novel End-to-end Trainable Retrieval-Augmented Generation (ETRAG), which allows end-to-end optimization of the entire model, including the retriever, for the relation extraction objective by utilizing a differentiable selection of the $k$ nearest instances. We evaluate the relation extraction performance of ETRAG on the TACRED dataset, which is a standard benchmark for relation extraction. ETRAG demonstrates consistent improvements against the baseline model as retrieved instances are added. Furthermore, the analysis of instances retrieved by the end-to-end trained retriever confirms that the retrieved instances contain common relation labels or entities with the query and are specialized for the target task. Our findings provide a promising foundation for future research on retrieval-augmented generation and the broader applications of text generation in Natural Language Processing.",
+    "pdf_url": "https://arxiv.org/pdf/2406.03790v2"
+  },
+  {
+    "id": "2412.15404v1",
+    "title": "A Retrieval-Augmented Generation Framework for Academic Literature Navigation in Data Science",
+    "authors": [
+      "Ahmet Yasin Aytar",
+      "Kemal Kilic",
+      "Kamer Kaya"
+    ],
+    "published": "2024-12-19T21:14:54+00:00",
+    "categories": [
+      "cs.IR",
+      "cs.AI"
+    ],
+    "abstract": "In the rapidly evolving field of data science, efficiently navigating the expansive body of academic literature is crucial for informed decision-making and innovation. This paper presents an enhanced Retrieval-Augmented Generation (RAG) application, an artificial intelligence (AI)-based system designed to assist data scientists in accessing precise and contextually relevant academic resources. The AI-powered application integrates advanced techniques, including the GeneRation Of BIbliographic Data (GROBID) technique for extracting bibliographic information, fine-tuned embedding models, semantic chunking, and an abstract-first retrieval method, to significantly improve the relevance and accuracy of the retrieved information. This implementation of AI specifically addresses the challenge of academic literature navigation. A comprehensive evaluation using the Retrieval-Augmented Generation Assessment System (RAGAS) framework demonstrates substantial improvements in key metrics, particularly Context Relevance, underscoring the system's effectiveness in reducing information overload and enhancing decision-making processes. Our findings highlight the potential of this enhanced Retrieval-Augmented Generation system to transform academic exploration within data science, ultimately advancing the workflow of research and innovation in the field.",
+    "pdf_url": "https://arxiv.org/pdf/2412.15404v1"
+  },
+  {
+    "id": "2309.01431v2",
+    "title": "Benchmarking Large Language Models in Retrieval-Augmented Generation",
+    "authors": [
+      "Jiawei Chen",
+      "Hongyu Lin",
+      "Xianpei Han",
+      "Le Sun"
+    ],
+    "published": "2023-09-04T08:28:44+00:00",
+    "categories": [
+      "cs.CL"
+    ],
+    "abstract": "Retrieval-Augmented Generation (RAG) is a promising approach for mitigating the hallucination of large language models (LLMs). However, existing research lacks rigorous evaluation of the impact of retrieval-augmented generation on different large language models, which make it challenging to identify the potential bottlenecks in the capabilities of RAG for different LLMs. In this paper, we systematically investigate the impact of Retrieval-Augmented Generation on large language models. We analyze the performance of different large language models in 4 fundamental abilities required for RAG, including noise robustness, negative rejection, information integration, and counterfactual robustness. To this end, we establish Retrieval-Augmented Generation Benchmark (RGB), a new corpus for RAG evaluation in both English and Chinese. RGB divides the instances within the benchmark into 4 separate testbeds based on the aforementioned fundamental abilities required to resolve the case. Then we evaluate 6 representative LLMs on RGB to diagnose the challenges of current LLMs when applying RAG. Evaluation reveals that while LLMs exhibit a certain degree of noise robustness, they still struggle significantly in terms of negative rejection, information integration, and dealing with false information. The aforementioned assessment outcomes indicate that there is still a considerable journey ahead to effectively apply RAG to LLMs.",
+    "pdf_url": "https://arxiv.org/pdf/2309.01431v2"
+  },
+  {
+    "id": "2405.19893v1",
+    "title": "Similarity is Not All You Need: Endowing Retrieval Augmented Generation with Multi Layered Thoughts",
+    "authors": [
+      "Chunjing Gan",
+      "Dan Yang",
+      "Binbin Hu",
+      "Hanxiao Zhang",
+      "Siyuan Li",
+      "Ziqi Liu",
+      "Yue Shen",
+      "Lin Ju",
+      "Zhiqiang Zhang",
+      "Jinjie Gu",
+      "Lei Liang",
+      "Jun Zhou"
+    ],
+    "published": "2024-05-30T09:50:38+00:00",
+    "categories": [
+      "cs.LG",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "abstract": "In recent years, large language models (LLMs) have made remarkable achievements in various domains. However, the untimeliness and cost of knowledge updates coupled with hallucination issues of LLMs have curtailed their applications in knowledge intensive tasks, where retrieval augmented generation (RAG) can be of help. Nevertheless, existing retrieval augmented models typically use similarity as a bridge between queries and documents and follow a retrieve then read procedure. In this work, we argue that similarity is not always the panacea and totally relying on similarity would sometimes degrade the performance of retrieval augmented generation. To this end, we propose MetRag, a Multi layEred Thoughts enhanced Retrieval Augmented Generation framework. To begin with, beyond existing similarity oriented thought, we embrace a small scale utility model that draws supervision from an LLM for utility oriented thought and further come up with a smarter model by comprehensively combining the similarity and utility oriented thoughts. Furthermore, given the fact that the retrieved document set tends to be huge and using them in isolation makes it difficult to capture the commonalities and characteristics among them, we propose to make an LLM as a task adaptive summarizer to endow retrieval augmented generation with compactness-oriented thought. Finally, with multi layered thoughts from the precedent stages, an LLM is called for knowledge augmented generation. Extensive experiments on knowledge-intensive tasks have demonstrated the superiority of MetRag.",
+    "pdf_url": "https://arxiv.org/pdf/2405.19893v1"
+  },
+  {
+    "id": "2603.04647v1",
+    "title": "Coordinated Semantic Alignment and Evidence Constraints for Retrieval-Augmented Generation with Large Language Models",
+    "authors": [
+      "Xin Chen",
+      "Saili Uday Gadgil",
+      "Jiarong Qiu"
+    ],
+    "published": "2026-03-04T22:21:04+00:00",
+    "categories": [
+      "cs.CL"
+    ],
+    "abstract": "Retrieval augmented generation mitigates limitations of large language models in factual consistency and knowledge updating by introducing external knowledge. However, practical applications still suffer from semantic misalignment between retrieved results and generation objectives, as well as insufficient evidence utilization. To address these challenges, this paper proposes a retrieval augmented generation method that integrates semantic alignment with evidence constraints through coordinated modeling of retrieval and generation stages. The method first represents the relevance between queries and candidate evidence within a unified semantic space. This ensures that retrieved results remain semantically consistent with generation goals and reduces interference from noisy evidence and semantic drift. On this basis, an explicit evidence constraint mechanism is introduced. Retrieved evidence is transformed from an implicit context into a core control factor in generation. This restricts the expression scope of generated content and strengthens dependence on evidence. By jointly modeling semantic consistency and evidence constraints within a unified framework, the proposed approach improves factual reliability and verifiability while preserving natural language fluency. Comparative results show stable improvements across multiple generation quality metrics. This confirms the effectiveness and necessity of coordinated semantic alignment and evidence constraint modeling in retrieval augmented generation tasks.",
+    "pdf_url": "https://arxiv.org/pdf/2603.04647v1"
+  },
+  {
+    "id": "2607.01852v1",
+    "title": "Evaluating Chunking Strategies for Retrieval-Augmented Generation on Academic Texts",
+    "authors": [
+      "Valentin J. J. Kreileder",
+      "Johannes Reisinger",
+      "Andreas Fischer"
+    ],
+    "published": "2026-07-02T08:12:35+00:00",
+    "categories": [
+      "cs.IR",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "abstract": "Retrieval-Augmented Generation (RAG) systems use the question-answering capabilities of Large Language Models (LLMs) to access information outside their parameters. We evaluate if cluster-based semantic chunking improves retrieval and answer quality compared to fixed-size and recursive chunking evaluating on long, structured academic theses using the Retrieval Augmented Generation Assessment (RAGAs) framework. RAGAs based faithfulness shows limited reliability in this setup. Performance on fixed versus document specific questions varied substantially, likely related to the formatting of documents and preprocessing. Under the tested configuration, cluster-based chunking did not outperform simpler strategies.",
+    "pdf_url": "https://arxiv.org/pdf/2607.01852v1"
+  },
+  {
+    "id": "2403.14197v1",
+    "title": "Context Quality Matters in Training Fusion-in-Decoder for Extractive Open-Domain Question Answering",
+    "authors": [
+      "Kosuke Akimoto",
+      "Kunihiro Takeoka",
+      "Masafumi Oyamada"
+    ],
+    "published": "2024-03-21T07:47:57+00:00",
+    "categories": [
+      "cs.CL"
+    ],
+    "abstract": "Retrieval-augmented generation models augment knowledge encoded in a language model by providing additional relevant external knowledge (context) during generation. Although it has been shown that the quantity and quality of context impact the performance of retrieval-augmented generation models during inference, limited research explores how these characteristics affect model training. This paper explores how context quantity and quality during model training affect the performance of Fusion-in-Decoder (FiD), the state-of-the-art retrieval-augmented generation model, in extractive open-domain question answering tasks. Experimental results suggest that FiD models overfit to context quality during training and show suboptimal performance when evaluated on different context quality. Through the experimental results, we also reveal FiD models trained with different context quality have different cross-attention distribution patterns. Specifically, as context quality during training increases, FiD models tend to attend more uniformly to each passage in context. Finally, based on these observations, we propose a method to mitigate overfitting to specific context quality by introducing bias to the cross-attention distribution, which we demonstrate to be effective in improving the performance of FiD models on different context quality.",
+    "pdf_url": "https://arxiv.org/pdf/2403.14197v1"
+  },
+  {
+    "id": "2406.16167v1",
+    "title": "FS-RAG: A Frame Semantics Based Approach for Improved Factual Accuracy in Large Language Models",
+    "authors": [
+      "Harish Tayyar Madabushi"
+    ],
+    "published": "2024-06-23T17:18:19+00:00",
+    "categories": [
+      "cs.CL"
+    ],
+    "abstract": "We present a novel extension to Retrieval Augmented Generation with the goal of mitigating factual inaccuracies in the output of large language models. Specifically, our method draws on the cognitive linguistic theory of frame semantics for the indexing and retrieval of factual information relevant to helping large language models answer queries. We conduct experiments to demonstrate the effectiveness of this method both in terms of retrieval effectiveness and in terms of the relevance of the frames and frame relations automatically generated. Our results show that this novel mechanism of Frame Semantic-based retrieval, designed to improve Retrieval Augmented Generation (FS-RAG), is effective and offers potential for providing data-driven insights into frame semantics theory. We provide open access to our program code and prompts.",
+    "pdf_url": "https://arxiv.org/pdf/2406.16167v1"
+  },
+  {
+    "id": "2502.01113v3",
+    "title": "GFM-RAG: Graph Foundation Model for Retrieval Augmented Generation",
+    "authors": [
+      "Linhao Luo",
+      "Zicheng Zhao",
+      "Gholamreza Haffari",
+      "Dinh Phung",
+      "Chen Gong",
+      "Shirui Pan"
+    ],
+    "published": "2025-02-03T07:04:29+00:00",
+    "categories": [
+      "cs.IR",
+      "cs.AI",
+      "cs.CL"
+    ],
+    "abstract": "Retrieval-augmented generation (RAG) has proven effective in integrating knowledge into large language models (LLMs). However, conventional RAGs struggle to capture complex relationships between pieces of knowledge, limiting their performance in intricate reasoning that requires integrating knowledge from multiple sources. Recently, graph-enhanced retrieval augmented generation (GraphRAG) builds graph structure to explicitly model these relationships, enabling more effective and efficient retrievers. Nevertheless, its performance is still hindered by the noise and incompleteness within the graph structure. To address this, we introduce GFM-RAG, a novel graph foundation model (GFM) for retrieval augmented generation. GFM-RAG is powered by an innovative graph neural network that reasons over graph structure to capture complex query-knowledge relationships. The GFM with 8M parameters undergoes a two-stage training process on large-scale datasets, comprising 60 knowledge graphs with over 14M triples and 700k documents. This results in impressive performance and generalizability for GFM-RAG, making it the first graph foundation model applicable to unseen datasets for retrieval without any fine-tuning required. Extensive experiments on three multi-hop QA datasets and seven domain-specific RAG datasets demonstrate that GFM-RAG achieves state-of-the-art performance while maintaining efficiency and alignment with neural scaling laws, highlighting its potential for further improvement.",
+    "pdf_url": "https://arxiv.org/pdf/2502.01113v3"
+  }
+]
