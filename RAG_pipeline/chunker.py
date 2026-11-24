@@ -17,14 +17,12 @@ class Chunk:
     page: int        # page the chunk starts on, zero-based
     index: int       # position of this chunk within the document
 
-
 def _make(items: list[tuple[str, int]], index: int) -> Chunk:
     return Chunk(
         text=" ".join(sentence for sentence, _ in items),
         page=items[0][1],
         index=index,
     )
-
 
 def _hard_split(sentence: str) -> list[str]:
     """A 'sentence' longer than the budget has no boundary to split on."""
